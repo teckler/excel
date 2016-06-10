@@ -1,0 +1,22 @@
+Function te_ConvertSQLDate(InDate As String)
+'Takes in 2016-01-06T07:06:07.000Z formatted string and converts it to a serial date value
+
+    ConvertSQLDate = DateValue(Left(InDate, 10))
+
+End Function
+
+Function te_ConvertSQLTime(InDate As String)
+'Takes in 2016-01-06T07:06:07.000Z formatted string and converts it to a serial time value
+
+    InDateLen = Len(InDate)
+    InDateTime = Right(InDate, InDateLen - 11)
+
+    If Right(InDate, 1) = "Z" Then
+
+        ConvertSQLTime = TimeValue(Left(InDateTime, Len(InDateTime) - 5))
+    Else
+        ConvertSQLTime = TimeValue(Left(InDateTime, Len(InDateTime) - 4))
+
+    End If
+
+End Function
